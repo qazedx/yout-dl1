@@ -1,0 +1,20 @@
+*.so
+*.a
+*.o
+*.la
+*.lo
+*.swp
+*~
+*o.d
+.deps
+.dirstamp
+
+# autoconf/automake related stuff
+autom4te.cache
+.configured
+
+# code browsing & etc
+cscope.*
+tags
+/nbproject/private/
+/node_modules/
