@@ -18,3 +18,4 @@ cscope.*
 tags
 /nbproject/private/
 /node_modules/
+/public/vid/
