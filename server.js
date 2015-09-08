@@ -21,7 +21,7 @@ function getFiles(dir, files_) {
     if (fs.statSync(name).isDirectory()) {
       getFiles(name, files_);
     } else {
-      files_.push("vid/"+files[i]);
+      files_.push("vid/" + files[i]);
     }
   }
   return files_;
@@ -39,12 +39,21 @@ var WebSocketServer = require('ws').Server,
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
-    var file_list = JSON.stringify(getFiles('public/vid'));
-    ws.send(file_list);
-    console.log('sent: %s', file_list);
+    if (message.type == "download") {
+      console.log('sudd');
+    } else if (message.type == "get_customers") {
+      var file_list = JSON.stringify(getFiles('public/vid'));
+      ws.send(file_list);
+      console.log('sent: %s', file_list);
+    } else {
+      console.log("unknown request");
+    }
+
   });
   console.log('connected');
-  require('chokidar').watch('public/vid', {ignored: /[\/\\]\./}).on('all', function(event, path) {
+  require('chokidar').watch('public/vid', {
+    ignored: /[\/\\]\./
+  }).on('all', function (event, path) {
     console.log(event, path);
     var file_list = JSON.stringify(getFiles('public/vid'));
     ws.send(file_list);

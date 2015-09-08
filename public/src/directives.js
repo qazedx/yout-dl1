@@ -4,8 +4,10 @@ angular.module('youtApp')
       restrict: 'EA',
       templateUrl: 'views/dl-field.html',
       replace: false,
-      link: function ($scope, element, attr) {
-
+      link: function ($scope, $rootScope, element, attr, MyService) {
+        $('#download').bind('click', function (MyServices) {
+          MyService.downloadVid();
+        })
 
       }
     };
@@ -15,7 +17,7 @@ angular.module('youtApp')
       restrict: 'EA',
       templateUrl: 'views/list.html',
       replace: false,
-      link: function ($scope,$rootScope, element, attr, MyService) {
+      link: function ($scope, $rootScope, element, attr, MyService) {
         $('.reffbtn').bind('click', function ($rootScope, MyService) {
           $scope.customers = MyService.getCustomers();
           $scope.vidlists = $scope.customers;

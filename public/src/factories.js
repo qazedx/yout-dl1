@@ -36,12 +36,6 @@ angular.module('youtApp')
       var messageObj = data;
       console.log("Received data from websocket (factory): ", messageObj);
       $rootScope.customersFactory = messageObj;
-      // If an object exists with callback_id in our callbacks object, resolve it
-      // if (true) {
-      //   console.log(callbacks[messageObj.callback_id] + 'eeeeeeeeeeeeee');
-      //   $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
-      //   delete callbacks[messageObj.callbackID];
-      // }
     }
     // This creates a new callback ID for a request
     function getCallbackId() {
@@ -56,6 +50,15 @@ angular.module('youtApp')
     Service.getCustomers = function () {
       var request = {
           type: "get_customers"
+        }
+        // Storing in a variable for clarity on what sendRequest returns
+      var promise = sendRequest(request);
+      console.log(promise);
+      return promise;
+    }
+    Service.downloadVids = function () {
+      var request = {
+          type: "download"
         }
         // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request);

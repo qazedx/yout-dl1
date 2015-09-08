@@ -18,32 +18,26 @@
     </div>
 
     <div ng-controller="vidList" class='row'>
-      <button type="button" name="button" ng-click="echoscope()">echo scope</button>
-      <span>xxxxxxxxxxxxxx</span>
-      <br/>
-      <button type="button" name="button" ng-click="refreshListFun2()">ref</button>
       <div class='col-sm-12' list></div>
-      <span>xxxxxxxxxxxxxx</span>
-      <br/>
-      <span> div repeat ssxxxxxxxxxxxxxx</span>
-      <div ng-repeat='customer in customers'>
-        {{ customer }}
-        <video src="{{ customer }}" controls   style="max-width:100px "> </video>
-      </div>
-      <br/>
-      <span> div repeat END ssxxxxxxxxxxxxxx</span>
-      <br/>
-    </div>
-    <div class='row'>
-      <button type="button" name="button" ng-click="refreshListFun2()">ref</button>
       <div class='col-sm-12'>
-        <span>ssss</span>
+        <button type="button" name="button" ng-click="echoscope()">echo scope</button>
+        <br/>
+        <span>xxxxxxxxxxxxxx</span>
+        <br/>
+        <button type="button" name="button" ng-click="refreshList()">refreshList</button>
+        <span>xxxxxxxxxxxxxx</span>
+        <br/>
+        <span> div repeat ssxxxxxxxxxxxxxx</span>
         <div ng-repeat='customer in customers'>
-          <div> {{ customer }} </div>
+          {{ customer }}
+          <video src="{{ customer }}" controls style="max-width:90% "></video>
         </div>
+        <br/>
+        <span> div repeat END ssxxxxxxxxxxxxxx</span>
+        <br/>
       </div>
     </div>
-    <br/>
+
 
   </div>
 
