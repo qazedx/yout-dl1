@@ -21,7 +21,7 @@ function getFiles(dir, files_) {
     if (fs.statSync(name).isDirectory()) {
       getFiles(name, files_);
     } else {
-      files_.push(name);
+      files_.push("vid/"+files[i]);
     }
   }
   return files_;
@@ -39,8 +39,15 @@ var WebSocketServer = require('ws').Server,
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
-    ws.send(JSON.stringify(getFiles('public/vid')));
+    var file_list = JSON.stringify(getFiles('public/vid'));
+    ws.send(file_list);
+    console.log('sent: %s', file_list);
   });
   console.log('connected');
-  ws.send(JSON.stringify(getFiles('public/vid')));
+  require('chokidar').watch('public/vid', {ignored: /[\/\\]\./}).on('all', function(event, path) {
+    console.log(event, path);
+    var file_list = JSON.stringify(getFiles('public/vid'));
+    ws.send(file_list);
+  });
+
 });

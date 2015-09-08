@@ -15,9 +15,12 @@ angular.module('youtApp')
       restrict: 'EA',
       templateUrl: 'views/list.html',
       replace: false,
-      link: function ($scope, element, attr) {
-        $scope.vidlists = $scope.customers;
-        console.log($scope.vidlists +"$scope.vidlists");
+      link: function ($scope,$rootScope, element, attr, MyService) {
+        $('.reffbtn').bind('click', function ($rootScope, MyService) {
+          $scope.customers = MyService.getCustomers();
+          $scope.vidlists = $scope.customers;
+          console.log($scope.customers + "          $scope");
+        });
 
       }
     };
