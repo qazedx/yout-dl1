@@ -15,6 +15,7 @@ angular.module('youtApp')
 
     ws.onmessage = function (message) {
       listener(JSON.parse(message.data));
+      Service.getCustomerss
     };
 
     function sendRequest(request) {
@@ -63,6 +64,14 @@ angular.module('youtApp')
         // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request);
       console.log(promise);
+      return promise;
+    }
+    Service.getCustomerss = function () {
+      var request = {
+          type: "get_customers"
+        }
+        // Storing in a variable for clarity on what sendRequest returns
+      var promise =  listener(data);
       return promise;
     }
 
