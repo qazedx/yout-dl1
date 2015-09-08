@@ -16,9 +16,27 @@
     <div class='row'>
       <div class='col-sm-12' dl-field></div>
     </div>
-    <div ng-controller="customerList"  class='row'>
+    <div class='row'>
       <div class='col-sm-12' list></div>
     </div>
+    <table  ng-controller="customerList"   class='table table-hover table-bordered'>
+        <thead>
+            <tr>
+                <th>
+                  Files
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          <!-- <tr  ng-repeat='contact in contacts | filter: query | orderBy: sort.field : sort.order'>
+              <td > {{ contact }} </td>
+          </tr> -->
+          <tr  ng-repeat='customer in customers | orderBy: sort.field : sort.order'>
+              <td > {{ customer }} </td>
+          </tr>
+        </tbody>
+    </table>
+
   </div>
 
   <script src='lib/jquery/dist/jquery.min.js'></script>
@@ -28,7 +46,6 @@
 
 
   <script src='src/app.js'></script>
-
   <script src='src/factories.js'></script>
   <script src='src/controllers.js'></script>
   <script src='src/directives.js'></script>

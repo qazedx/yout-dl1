@@ -12,8 +12,12 @@ angular.module('youtApp')
     $scope.show = function (id) {
       $location.url('/contact/' + id);
     };
+
   })
-  .controller('customerList', ['MyService', function ( $scope, MyService) {
-    $scope.customers = MyService.getCustomers();
-    console.log($scope.customers);
-  }]);
+  .controller('customerList', function ( $scope, MyService) {
+    setTimeout(function(){
+      $scope.customers = MyService.getCustomers();
+      console.log($scope.customers);
+    },3000)
+
+  });

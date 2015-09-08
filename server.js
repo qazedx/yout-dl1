@@ -35,7 +35,7 @@ function getFiles(dir, files_) {
   }
   return files_;
 }
-console.log(getFiles('vid'));
+// console.log(getFiles('vid'));
 
 
 // ws
@@ -52,8 +52,8 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
   });
-  console.log('aareceived: %s' + getFiles('vid') + 'message');
-  ws.send(JSON.stringify(getFiles('vid')));
+  ws.send(JSON.stringify(getFiles('public/vid')));
+  console.log(22);
 });
 
 
