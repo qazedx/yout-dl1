@@ -1,28 +1,19 @@
 var express = require('express'),
-  // api     = require('./api'),
-  // users   = require('./accounts'),
   app = express();
 
 app
   .use(express.static('./public'))
-  // .use(users)
-  // .use('/api', api)
   .get('*', function (req, res) {
-    // if (!req.user) {
-    //     res.redirect('/login');
-    // } else {
     res.sendFile('public/main.html', {
       "root": "."
     });
-    // }
-  })
-  .listen(3000);
+  }).listen(3000);
 
+// read files
 var fs = require('fs');
 var ytdl = require('ytdl-core');
 
 function getFiles(dir, files_) {
-
   files_ = files_ || [];
   var files = fs.readdirSync(dir);
   for (var i in files) {
@@ -35,42 +26,21 @@ function getFiles(dir, files_) {
   }
   return files_;
 }
-console.log(getFiles('vid'));
 
 
 // ws
 
-
-
 var WebSocketServer = require('ws').Server,
   wss = new WebSocketServer({
     path: '/vidl',
-    port: 3005
+    port: 3007
   });
 
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
+    ws.send(JSON.stringify(getFiles('public/vid')));
   });
-  console.log('aareceived: %s' + getFiles('vid') + 'message');
-  ws.send(JSON.stringify(getFiles('vid')));
+  console.log('connected');
+  ws.send(JSON.stringify(getFiles('public/vid')));
 });
-
-
-
-
-
-
-
-
-
-
-// var WebSocket = require('ws');
-// var ws = new WebSocket('ws://localhost:300/vidl');
-// ws.on('open', function open() {
-//   ws.send( );
-// });
-// ws.on('message', function(data, flags) {
-//   // flags.binary will be set if a binary data is received.
-//   // flags.masked will be set if the data was masked.
-// });

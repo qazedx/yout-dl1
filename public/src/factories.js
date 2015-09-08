@@ -7,7 +7,7 @@ angular.module('youtApp')
     // Create a unique callback ID to map requests to responses
     var currentCallbackId = 0;
     // Create our websocket object with the address to the websocket
-    var ws = new WebSocket("ws://localhost:3005/vidl/");
+    var ws = new WebSocket("ws://localhost:3007/vidl");
 
     ws.onopen = function () {
       console.log("Socket has been opened!");
@@ -26,19 +26,16 @@ angular.module('youtApp')
       };
       request.callback_id = callbackId;
       console.log('Sending request', request);
-      ws.send(JSON.stringify(request));
+      setTimeout(function () {
+        ws.send(JSON.stringify(request));
+      }, 1)
       return defer.promise;
     }
 
     function listener(data) {
       var messageObj = data;
-      console.log("Received data from websocket: ", messageObj);
-      // If an object exists with callback_id in our callbacks object, resolve it
-      if (callbacks.hasOwnProperty(messageObj.callback_id)) {
-        console.log(callbacks[messageObj.callback_id]);
-        $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
-        delete callbacks[messageObj.callbackID];
-      }
+      console.log("Received data from websocket (factory): ", messageObj);
+      $rootScope.customers = messageObj;
     }
     // This creates a new callback ID for a request
     function getCallbackId() {
@@ -56,6 +53,7 @@ angular.module('youtApp')
         }
         // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request);
+      console.log(promise);
       return promise;
     }
 

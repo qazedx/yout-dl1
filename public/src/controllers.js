@@ -1,19 +1,25 @@
 angular.module('youtApp')
-  .controller('ListController', function ($scope, options) {
+  .controller('vidList', function ($rootScope, $scope, MyService) {
 
-    $scope.sort = function (field) {
-      $scope.sort.field = field;
-      $scope.sort.order = !$scope.sort.order;
-    };
-
-    $scope.sort.field = 'firstName';
-    $scope.sort.order = false;
-
-    $scope.show = function (id) {
-      $location.url('/contact/' + id);
-    };
-  })
-  .controller('customerList', ['MyService', function ( $scope, MyService) {
     $scope.customers = MyService.getCustomers();
+    $scope.customers = $rootScope.customers;
     console.log($scope.customers);
-  }]);
+    $scope.refreshListFun2 = function () {
+
+      $scope.customers = MyService.getCustomers();
+      $scope.customers = $rootScope.customers;
+
+    //  console.log($rootScope.customers + "         r rrcontroller");
+    //  console.log($scope.customers + "          s rrcontroller");
+    }
+  })
+  .controller('vidListTest', function ($rootScope, $scope, MyService) {
+    $scope.refreshListFun = function () {
+
+      $scope.customers = MyService.getCustomers();
+      $scope.customers = $rootScope.customers;
+
+    //  console.log($rootScope.customers + "         r controller");
+    //  console.log($scope.customers + "          s controller");
+    }
+  });

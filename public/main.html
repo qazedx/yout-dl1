@@ -16,8 +16,28 @@
     <div class='row'>
       <div class='col-sm-12' dl-field></div>
     </div>
-    <div ng-controller="customerList"  class='row'>
+
+    <div ng-controller="vidList" class='row'>
+      <button type="button" name="button" ng-click="refreshListFun2()">ref</button>
       <div class='col-sm-12' list></div>
+    </div>
+
+    <div ng-controller="vidList" class='row'>
+      <button type="button" name="button" ng-click="refreshListFun2()">ref</button>
+      <div class='col-sm-12'>
+        <span>ssss</span>
+        <div ng-repeat='customer in customers'>
+          <div> {{ customer }} </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div ng-controller="vidListTest" class="">
+      <button type="button" name="button" ng-click="refreshListFun()">ref</button>
+      <refresh-list/>
+      <div ng-repeat='customer in customers'>
+        {{ customer }}
+      </div>
     </div>
   </div>
 
