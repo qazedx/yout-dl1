@@ -5,9 +5,9 @@ angular.module('youtApp')
       templateUrl: 'views/dl-field.html',
       replace: false,
       link: function ($scope, $rootScope, element, attr, MyService) {
-        $('#download').bind('click', function (MyServices) {
-          MyService.downloadVid();
-        })
+        // $('#download').bind('click', function (MyServices) {
+        //   MyService.downloadVid();
+        // })
 
       }
     };
