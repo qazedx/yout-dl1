@@ -1,21 +1,19 @@
 angular.module('youtApp')
   .controller('vidList', function($rootScope, $scope, MyService) {
 
-    MyService.getCustomers();
-    $scope.customers = $rootScope.customersFactory;
-    console.log($scope.customers);
+    MyService.getVideos();
+    $scope.videos = $rootScope.VideosFactory;
     $scope.echoscope = function() {
-      console.log($scope.customers + '  ----$scope.customers');
-      console.log($rootScope.customersFactory + "  ----$rootScope.customersFactory");
+      console.log($scope.videos + '  ----$scope.Videos');
+      console.log($rootScope.VideosFactory + "  ----$rootScope.VideosFactory");
     }
     $scope.refreshList = function() {
-      MyService.getCustomers();
-      $scope.customers = $rootScope.customersFactory;
+      MyService.getVideos();
+      $scope.videos = $rootScope.VideosFactory;
     }
   })
   .controller('downloadVid', function($rootScope, $scope, MyService) {
     $scope.downloadVid = function(vid) {
-      console.log($scope.vid);
       MyService.downloadVids($scope.vid);
     }
   })

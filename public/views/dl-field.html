@@ -1,7 +1,9 @@
-<div class='row form-group'>
-  <label class='col-sm-2 control-label'> url</label>
-  <div class='col-sm-6 form-inline' ng-switch='required'>
-    <input  class='form-control' ng-model="vid.url" required   />
-    <button  class='form-control' type="submit" name="button" ng-click="downloadVid()" id="download">download</button>
+<form class="">
+  <div class='form-group'>
+    <!-- <label class='control-label'> url</label> -->
+    <div class='form-inline' ng-switch='required'>
+      <input class='form-control' ng-model="vid.url" required placeholder="url"/>
+      <button class='form-control' type="submit" name="button" ng-click="downloadVid()" id="download">download</button>
+    </div>
   </div>
-</div>
+</form>

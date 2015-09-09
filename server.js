@@ -66,7 +66,7 @@ wss.on('connection', function connection(ws) {
     if (message.type == "download") {
       downloadVid(message.url)
       console.log(message.url);
-    } else if (message.type == "get_customers") {
+    } else if (message.type == "get_Videos") {
       var file_list = JSON.stringify(getFiles('public/vid'));
       ws.send(file_list);
       console.log('sent: %s', file_list);

@@ -1,15 +1,9 @@
-<button type="button" name="button" class="reffbtn">reffbtn</button>
-<table class='table table-hover table-bordered'>
-  <thead>
-    <tr>
-      <th>
-        Files
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat='vidlist in vidlists '>
-      <td> {{ vidlist }} </td>
-    </tr>
-  </tbody>
-</table>
+<div class='col-sm-12'>
+  <button class='form-control' type="button" name="button" ng-click="refreshList()">refreshList</button>
+  <div ng-repeat='video in videos'>
+    <h4>{{ video }}</h4>
+    <video ng-src="{{video}}" controls style="max-width:95% "></video>
+  </div>
+  <br/>
+  <br/>
+</div>

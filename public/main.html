@@ -18,24 +18,9 @@
     </div>
 
     <div ng-controller="vidList" class='row'>
-      <div class='col-sm-12' list></div>
-      <div class='col-sm-12'>
-        <button class='form-control' type="button" name="button" ng-click="echoscope()">echo scope</button>
-        <br/>
-        <button class='form-control' type="button" name="button" ng-click="refreshList()">refreshList</button>
-
-        <span> div repeat ssxxxxxxxxxxxxxx</span>
-        <div ng-repeat='customer in customers'>
-          {{ customer }}
-          <video ng-src="{{customer}}" controls style="max-width:90% "></video>
-        </div>
-        <br/>
-        <span> div repeat END ssxxxxxxxxxxxxxx</span>
-        <br/>
-      </div>
+      <div class='col-sm-12'><button class='form-control' type="button" name="button" ng-click="echoscope()">echo scope</button></br></div>
+      <div class='text-center' list></div>
     </div>
-
-
   </div>
 
   <script src='lib/jquery/dist/jquery.min.js'></script>

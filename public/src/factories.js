@@ -15,7 +15,7 @@ angular.module('youtApp')
 
     ws.onmessage = function (message) {
       listener(JSON.parse(message.data));
-      Service.getCustomerss
+      Service.getVideos
     };
 
     function sendRequest(request) {
@@ -36,7 +36,7 @@ angular.module('youtApp')
     function listener(data) {
       var messageObj = data;
       console.log("Received data from websocket (factory): ", messageObj);
-      $rootScope.customersFactory = messageObj;
+      $rootScope.VideosFactory = messageObj;
     }
     // This creates a new callback ID for a request
     function getCallbackId() {
@@ -48,9 +48,9 @@ angular.module('youtApp')
     }
 
     // Define a "getter" for getting customer data
-    Service.getCustomers = function () {
+    Service.getVideos = function () {
       var request = {
-          type: "get_customers"
+          type: "get_Videos"
         }
         // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request);
@@ -67,14 +67,7 @@ angular.module('youtApp')
       console.log(promise);
       return promise;
     }
-    Service.getCustomerss = function () {
-      var request = {
-          type: "get_customers"
-        }
-        // Storing in a variable for clarity on what sendRequest returns
-      var promise =  listener(data);
-      return promise;
-    }
+  
 
     return Service;
   }])
