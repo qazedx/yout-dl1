@@ -12,6 +12,7 @@ app
 // read files
 var fs = require('fs');
 var ytdl = require('ytdl-core');
+var path = require('path')
 
 function getFiles(dir, files_) {
   files_ = files_ || [];
@@ -21,22 +22,32 @@ function getFiles(dir, files_) {
     if (fs.statSync(name).isDirectory()) {
       getFiles(name, files_);
     } else {
-      files_.push("vid/" + files[i]);
+      if (path.extname(files[i]) == ".mp4")
+        files_.push("vid/" + files[i]);
     }
   }
   return files_;
 }
 
 function downloadVid(url) {
-  var fs = require('fs');
-  var ytdl = require('ytdl-core');
+
   ytdl.getInfo(url, function (err, info) {
+    if (err) {
+      return console.log(err);
+    }
+    fs.writeFile('public/vid/vid_data_' + info.author + '_' + info.title + '.json', JSON.stringify(info), function (err) {
+      if (err) {
+        return console.log(err);
+      }
+
+      console.log("The file was saved!");
+    });
     ytdl(url, {
         filter: function (format) {
           return format.container === 'mp4';
         }
       })
-      .pipe(fs.createWriteStream('public/vid/' + info.title + '.mp4'));
+      .pipe(fs.createWriteStream('public/vid/' + info.author + '_' + info.title + '.mp4'));
   })
 }
 
