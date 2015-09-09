@@ -14,7 +14,8 @@ angular.module('youtApp')
     }
   })
   .controller('downloadVid', function($rootScope, $scope, MyService) {
-    $scope.downloadVid = function() {
-      MyService.downloadVids();
+    $scope.downloadVid = function(vid) {
+      console.log($scope.vid);
+      MyService.downloadVids($scope.vid);
     }
   })

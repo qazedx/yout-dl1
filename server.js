@@ -27,6 +27,18 @@ function getFiles(dir, files_) {
   return files_;
 }
 
+function downloadVid(url) {
+  var fs = require('fs');
+  var ytdl = require('ytdl-core');
+  ytdl.getInfo(url, function (err, info) {
+    ytdl(url, {
+        filter: function (format) {
+          return format.container === 'mp4';
+        }
+      })
+      .pipe(fs.createWriteStream('public/vid/' + info.title + '.mp4'));
+  })
+}
 
 // ws
 
@@ -38,9 +50,11 @@ var WebSocketServer = require('ws').Server,
 
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
+    var message = JSON.parse(message)
     console.log('received: %s', message);
     if (message.type == "download") {
-      console.log('sudd');
+      downloadVid(message.url)
+      console.log(message.url);
     } else if (message.type == "get_customers") {
       var file_list = JSON.stringify(getFiles('public/vid'));
       ws.send(file_list);

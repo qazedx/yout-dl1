@@ -57,9 +57,10 @@ angular.module('youtApp')
       console.log(promise);
       return promise;
     }
-    Service.downloadVids = function () {
+    Service.downloadVids = function (vid) {
       var request = {
-          type: "download"
+          type: "download",
+          url: vid.url
         }
         // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request);
