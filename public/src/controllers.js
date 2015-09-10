@@ -13,7 +13,8 @@ angular.module('youtApp')
     $scope.refreshList = function () {
       MyService.getVideos();
       $scope.videos = $rootScope.VideosFactory;
-      console.log($scope.videos);
+      $scope.baseUrl = "vid/"
+      // $scope.videoNames = $scope.videos.Object.name
     }
   })
   .controller('downloadVid', function ($rootScope, $scope, MyService) {

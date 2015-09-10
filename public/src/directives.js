@@ -5,7 +5,7 @@ angular.module('youtApp')
       templateUrl: 'views/dl-field.html',
       replace: false,
       link: function ($scope, $rootScope, element, attr, MyService) {
-        
+
       }
     };
   })

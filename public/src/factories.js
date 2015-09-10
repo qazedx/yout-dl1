@@ -35,6 +35,7 @@ angular.module('youtApp')
 
     function listener(data) {
       var messageObj = data;
+      console.log(messageObj.type);
       if (messageObj.type == "change" ){
         $rootScope.loadingVideo = true;
         setTimeout(function(){$rootScope.loadingVideo = true;},1000)
@@ -58,7 +59,7 @@ angular.module('youtApp')
     // Define a "getter" for getting customer data
     Service.getVideos = function () {
       var request = {
-          type: "get_Videos"
+          type: "get_videos"
         }
         // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request);
