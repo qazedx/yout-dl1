@@ -15,7 +15,7 @@ angular.module('youtApp')
 
     ws.onmessage = function (message) {
       listener(JSON.parse(message.data));
-      Service.getVideos
+      // Service.getVideos
     };
 
     function sendRequest(request) {
@@ -35,8 +35,16 @@ angular.module('youtApp')
 
     function listener(data) {
       var messageObj = data;
-      console.log("Received data from websocket (factory): ", messageObj);
-      $rootScope.VideosFactory = messageObj;
+      if (messageObj.type == "change" ){
+        $rootScope.loadingVideo = true;
+        setTimeout(function(){$rootScope.loadingVideo = true;},1000)
+        console.log($rootScope.loadingVideo);
+      }else if (messageObj.type == "videos") {
+        console.log(messageObj.videosArr);
+        $rootScope.VideosFactory = messageObj.videosArr;
+      }
+      // console.log("Received data from websocket (factory): ", messageObj);
+
     }
     // This creates a new callback ID for a request
     function getCallbackId() {
@@ -67,7 +75,7 @@ angular.module('youtApp')
       console.log(promise);
       return promise;
     }
-  
+
 
     return Service;
   }])

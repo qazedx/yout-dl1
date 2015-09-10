@@ -26,8 +26,58 @@ function getFiles(dir, files_) {
         files_.push("vid/" + files[i]);
     }
   }
+
+
+  // var diretoryTreeToObj = function(dir, done) {
+  //     var results = [];
+  //
+  //     fs.readdir(dir, function(err, list) {
+  //         if (err)
+  //             return done(err);
+  //
+  //         var pending = list.length;
+  //
+  //         if (!pending)
+  //             return done(null, {name: path.basename(dir), type: 'folder', children: results});
+  //
+  //         list.forEach(function(file) {
+  //             file = path.resolve(dir, file);
+  //             fs.stat(file, function(err, stat) {
+  //                 if (stat && stat.isDirectory()) {
+  //                     diretoryTreeToObj(file, function(err, res) {
+  //                         results.push({
+  //                             name: path.basename(file),
+  //                             type: 'folder',
+  //                             children: res
+  //                         });
+  //                         if (!--pending)
+  //                             done(null, results);
+  //                     });
+  //                 }
+  //                 else {
+  //                     results.push({
+  //                         type: 'file',
+  //                         name: path.basename(file)
+  //                     });
+  //                     if (!--pending)
+  //                         done(null, results);
+  //                 }
+  //             });
+  //         });
+  //     });
+  // };
+  // var dirTree = (dir);
+  //
+  // diretoryTreeToObj(dirTree, function(err, res){
+  //     if(err)
+  //         console.error(err);
+  //
+  //     console.log(JSON.stringify(res));
+  // });
+
   return files_;
 }
+
 
 function downloadVid(url) {
 
@@ -76,12 +126,30 @@ wss.on('connection', function connection(ws) {
 
   });
   console.log('connected');
-  require('chokidar').watch('public/vid', {
-    ignored: /[\/\\]\./
-  }).on('all', function (event, path) {
-    console.log(event, path);
-    var file_list = JSON.stringify(getFiles('public/vid'));
-    ws.send(file_list);
-  });
+  require('chokidar')
+    .watch('public/vid', {
+      ignored: /[\/\\]\./
+    }).on('all', function (event, path) {
+      console.log(event, path);
+      // var file_list = JSON.stringify(getFiles('public/vid'));
+      // ws.send(file_list);
+    })
+    .on('add', function (event, path) {
+      console.log('on add');
+      var file_list = JSON.stringify(getFiles('public/vid'));
+      var message = {
+        type: "videos",
+        videosArr: file_list
+      }
+      ws.send(JSON.stringify(message));
+    })
+    .on('change', function (event, path) {
+      console.log('on change');
+      //var file_list = JSON.stringify(getFiles('public/vid'));
+      var message = {
+        type: "change"
+      }
+      ws.send(JSON.stringify(message));
+    });
 
 });
