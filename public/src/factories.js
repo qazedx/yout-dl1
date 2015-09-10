@@ -17,6 +17,9 @@ angular.module('youtApp')
       listener(JSON.parse(message.data));
       // Service.getVideos
     };
+    ws.onclose = function () {
+  
+};
 
     function sendRequest(request) {
       var defer = $q.defer();

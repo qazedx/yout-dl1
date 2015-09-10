@@ -55,10 +55,10 @@ var diretoryTreeToObj = function (dir, done) {
           if (!--pending)
             done(null, results);
         } else {
-          results.push({
-            type: 'file',
-            name: path.basename(file)
-          });
+          // results.push({
+          //   type: 'file',
+          //   name: path.basename(file)
+          // });
           if (!--pending)
             done(null, results);
         }
@@ -94,7 +94,7 @@ function downloadVid(ws, url) {
     if (err) {
       return console.log(err);
     }
-    fs.writeFile('public/vid/' + info.author + '_' + info.title + '.json', JSON.stringify(info), function (err) {
+    fs.writeFile('public/vid/' + info.video_id + '.json', JSON.stringify(info), function (err) {
       if (err) {
         return console.log(err);
       }
@@ -105,7 +105,7 @@ function downloadVid(ws, url) {
           return format.container === 'mp4';
         }
       })
-      .pipe(fs.createWriteStream('public/vid/' + info.author + '_' + info.title + '.mp4'));
+      .pipe(fs.createWriteStream('public/vid/' + info.video_id + '.mp4'));
   })
 }
 
