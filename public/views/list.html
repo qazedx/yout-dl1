@@ -12,7 +12,7 @@
     </pre>
     <video ng-src="{{video.path}}" controls style="max-width:95% "></video>
     <form class="form-inline" action="index.html" method="post">
-      <button class="glyphicon glyphicon-remove btn" type="button" name="button" ng-click="deleteVid(video.obj.video_id)"
+      <button id="deleteVid-btn" class="glyphicon glyphicon-remove btn" type="button" name="button" ng-click="deleteVid(video.obj.video_id)"
       ></button>
     </form>
   </div>

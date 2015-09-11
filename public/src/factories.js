@@ -65,9 +65,10 @@ angular.module('youtApp')
           type: "get_videos"
         }
         // Storing in a variable for clarity on what sendRequest returns
-      var promise = sendRequest(request);
-      console.log(promise);
-      return promise;
+        // var promise =
+      sendRequest(request);
+      // console.log(promise);
+      // return promise;
     }
     Service.downloadVids = function (vid) {
       var request = {
@@ -77,7 +78,7 @@ angular.module('youtApp')
         // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request);
       console.log(promise);
-      return promise;
+      // return promise;
     }
     Service.deleteVid = function (vid) {
       var request = {
@@ -87,7 +88,7 @@ angular.module('youtApp')
         // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request);
       console.log(promise);
-      return promise;
+      // return promise;
     }
 
 

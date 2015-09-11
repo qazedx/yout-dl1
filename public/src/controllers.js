@@ -18,7 +18,7 @@ angular.module('youtApp')
     }
     $scope.deleteVid = function (vid) {
       MyService.deleteVid(vid);
-      console.log(vid);
+      console.log(vid+"-----------controler");
 
     }
   })
