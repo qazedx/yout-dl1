@@ -1,24 +1,22 @@
 <div class='col-sm-12'>
   <div class='form-inline text-center' ng-switch='required'>
-    <input id="idl-input" class='form-control' name="name" ng-model="searchVid" placeholder="search"/>
+    <input id="idl-input" class='form-control' name="name" ng-model="searchVid" placeholder="search" />
     <button class='form-control' type="submit" name="button" ng-click="searchVid()" id="download">Search</button>
   </div>
   <br/>
   <button class='form-control' type="button" name="button" ng-click="refreshList()">refreshList</button>
-  <div id="{{ video.obj.video_id }}" ng-repeat='video in videos| filter:searchVid'>
+  <div id="{{ video.obj.video_id }}" ng-repeat="video in videos | filter:searchVid | orderBy:video.obj.timestamps">
     <h5>
       {{ video.obj.author }}
     </h5>
     <h4 class="btn-block text-left">
       {{ video.obj.title }}
     </h4>
-    <pre>
-      {{video.path}}
-    </pre>
+    <span class="hiddens">{{video.obj.timestamp | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+    <span class="hiddens">{{video.obj.timestamp }}</span>
     <video ng-src="{{video.path}}" controls style="max-width:95% "></video>
     <form class="form-inline" action="index.html" method="post">
-      <button id="deleteVid-btn" class="glyphicon glyphicon-remove btn" type="button" name="button" ng-click="deleteVid(video.obj.video_id)"
-      ></button>
+      <button id="deleteVid-btn" class="glyphicon glyphicon-remove btn" type="button" name="button" ng-click="deleteVid(video.obj.video_id)"></button>
     </form>
   </div>
   <br/>
