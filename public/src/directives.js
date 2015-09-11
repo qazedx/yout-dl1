@@ -21,6 +21,10 @@ angular.module('youtApp')
       replace: false,
       link: function($scope, $rootScope, element, attr, MyService) {
 
+        element.on('click',function(){
+          console.log($scope.videos+'--------------$scope');
+        })
+  // $('#'+$scope.Videos.obj.video_id).html('');
       }
     };
   })

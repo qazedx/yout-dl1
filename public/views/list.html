@@ -1,11 +1,20 @@
 <div class='col-sm-12'>
   <button class='form-control' type="button" name="button" ng-click="refreshList()">refreshList</button>
-  <div ng-repeat='video in videos'>
+  <div id="{{ video.obj.video_id }}" ng-repeat='video in videos'>
     <h5>
-      <a href="#"></a>{{ video.obj.author }}</h5>
+      {{ video.obj.author }}
+    </h5>
     <h4 class="btn-block text-left">
-      <a href="#"></a>{{ video.obj.title }}</h4>
+      {{ video.obj.title }}
+    </h4>
+    <pre>
+      {{video.path}}
+    </pre>
     <video ng-src="{{video.path}}" controls style="max-width:95% "></video>
+    <form class="form-inline" action="index.html" method="post">
+      <button class="glyphicon glyphicon-remove btn" type="button" name="button" ng-click="deleteVid(video.obj.video_id)"
+      ></button>
+    </form>
   </div>
   <br/>
 </div>
