@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "yout-dl1",
+  "description": "To download video",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["app.js"]
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/",
+    "contextMenus"
+  ]
+}
