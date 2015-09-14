@@ -23,7 +23,7 @@ angular.module('youtApp')
           $('#'+video_id).html('');
             MyService.deleteVid(video_id);
         }
-        
+
       }
     };
   }])
