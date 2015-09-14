@@ -1,11 +1,11 @@
 <div class='col-sm-12'>
   <div class='form-inline text-center' ng-switch='required'>
-    <input id="idl-input" class='form-control' name="name" ng-model="searchVid" placeholder="search" />
+    <input id="idl-input" class='form-control' name="name" ng-model="searchVid.$" placeholder="search" />
     <button class='form-control' type="submit" name="button" ng-click="searchVid()" id="download">Search</button>
   </div>
   <br/>
   <button class='form-control' type="button" name="button" ng-click="refreshList()">refreshList</button>
-  <div id="{{ video.obj.video_id }}" ng-repeat="video in videos | filter:searchVid | orderBy:predicate:reverse">
+  <div id="{{ video.obj.video_id }}" ng-repeat="video in videos | filter:searchVid:strict | orderBy:predicate:reverse">
     <h5>
       {{ video.obj.author }}
     </h5>
