@@ -178,7 +178,7 @@ wss.on('connection', function connection(ws) {
           videosArr: res
         }
         message = JSON.stringify(message)
-        ws.send(message);
+          // ws.send(message);
       });
     })
     .on('change', function (event, path) {
