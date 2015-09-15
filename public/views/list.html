@@ -5,19 +5,47 @@
   </div>
   <br/>
   <button class='form-control' type="button" name="button" ng-click="refreshList()">refreshList</button>
-  <div id="{{ video.obj.video_id }}" ng-repeat="video in videos | filter:searchVid:strict | orderBy:predicate:reverse">
-    <h5>
-      {{ video.obj.author }}
-    </h5>
-    <h4 class="btn-block text-left">
-      {{ video.obj.title }}
-    </h4>
-    <span class="hiddens">{{video.obj.timestamp*1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
-    <span class="hiddens">{{video.obj.timestamp }}</span>
-    <video ng-src="{{video.path}}" controls style="max-width:95% "></video>
-    <form class="form-inline" action="index.html" method="post">
-      <button id="deleteVid-btn" class="glyphicon glyphicon-remove btn" type="button" name="button" ng-click="deleteVid(video.obj.video_id)"></button>
-    </form>
+  <div>
+    <span class=""></span>
+    <div class="form-group noselect">
+      <label for="listStyle-large" ng-class="{'text-primary':listStyle.large}" class="glyphicon glyphicon-th-large ">
+        <input id="listStyle-large" ng-model="listStyle.large" class="vhidden" type="checkbox">
+      </label>
+      <label for="listStyle-list" ng-class="{'text-primary':listStyle.list}" class="glyphicon glyphicon-th-list">
+        <input id="listStyle-list" ng-model="listStyle.list" class="vhidden" type="checkbox">
+      </label>
+    </div>
+  </div>
+  <div class="video-list" ng-class="{'list-large':listStyle.large, 'list-list':listStyle.list}">
+    <div class="">
+      <div class="video-list-item panel panel-default" id="{{ video.obj.video_id }}"
+      ng-repeat="video in videos | filter:searchVid:strict | orderBy:predicate:reverse">
+        <div class="panel-heading">
+          <h5 class="btn-block text-left">
+            {{ video.obj.author }}
+          </h5>
+          <h4 class="btn-block text-left">
+            {{ video.obj.title }}
+          </h4>
+          <span class="hidden">{{video.obj.timestamp*1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+          <span class="hidden">{{video.obj.timestamp }}</span>
+        </div>
+        <div class="panel-body">
+          <video ng-src="{{video.path}}" controls></video>
+        </div>
+        <div class="panel-footer">
+          <form class="form-inline text-left" action="index.html" method="post">
+            <button id="deleteVid-btn" class="glyphicon glyphicon-remove btn " type="button" name="button" ng-click="deleteVid(video.obj.video_id)"></button>
+            <button id="deleteVid-btn" class="addVid-btn glyphicon glyphicon-ok btn btn-default pull-right" type="button" name="button" ng-click="addVid(video.obj.video_id)"></button>
+            <button id="viewVid-btn" class="viewVid-btn glyphicon glyphicon-unchecked btn btn-default pull-right" type="button" name="button" ng-click="viewVid(video.obj.video_id)"></button>
+            <!-- <label for="addVid-btn" ng-class="{'btn-primary':addVidd}" class="addVid-btn glyphicon glyphicon-ok btn btn-default pull-right">
+              <input id="addVid-btn" ng-model="addVidd" class="hidden" type="checkbox" name="button" ng-click="addVid(video.obj.video_id)"></input>
+            </label> -->
+            <input id="listStyle-large" ng-model="listStyle.large" class="vhidden" type="checkbox">
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
   <br/>
 </div>

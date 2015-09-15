@@ -1,0 +1,31 @@
+.glyphicon.glyphicon-th-large:before,
+.glyphicon.glyphicon-th-list:before{
+  background-color: #fff;
+  font-size: 16px;
+}
+.vhidden{
+  visibility: hidden!important;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.video-list  .video-list-item  video{
+  display: none;
+}
+.video-list .video-list-item.viewVid-single video,
+.video-list.list-large  .video-list-item  video{
+  width: 100%;
+  display: block;
+}
+.video-list.list-list  .video-list-item  video{
+  max-width: 100px;
+  display: inline-block;
+}
+.panel-body{
+  padding: 0;
+}
