@@ -29,3 +29,16 @@
 .panel-body{
   padding: 0;
 }
+.add2list{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.add2list input{
+  width: 115px;
+  display: inline-block;
+}
+.add2list button{
+  width: 50px;
+  display: inline-block;
+}
