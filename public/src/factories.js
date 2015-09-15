@@ -90,6 +90,18 @@ angular.module('youtApp')
       console.log(promise);
       // return promise;
     }
+    Service.add2folder = function (arr,arr_path, folder) {
+      var request = {
+          type: "add2folder",
+          folder: folder,
+          arr: arr,
+          arr_path: arr_path
+        }
+        // Storing in a variable for clarity on what sendRequest returns
+      var promise = sendRequest(request);
+      console.log(promise);
+      // return promise;
+    }
 
 
     return Service;

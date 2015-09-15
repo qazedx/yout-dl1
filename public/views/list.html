@@ -36,7 +36,7 @@
         <div class="panel-footer">
           <form class="form-inline text-left" action="index.html" method="post">
             <button id="deleteVid-btn" class="glyphicon glyphicon-remove btn " type="button" name="button" ng-click="deleteVid(video.obj.video_id)"></button>
-            <button id="addVid-btn" class="addVid-btn glyphicon glyphicon-ok btn btn-default pull-right" type="button" name="button" ng-click="addVid(video.obj.video_id)"></button>
+            <button id="addVid-btn" class="addVid-btn glyphicon glyphicon-ok btn btn-default pull-right" type="button" name="button" ng-click="addVid(video.obj.video_id, video.path)"></button>
             <button id="viewVid-btn" class="viewVid-btn glyphicon glyphicon-unchecked btn btn-default pull-right" type="button" name="button" ng-click="viewVid(video.obj.video_id)"></button>
             <input id="listStyle-large" ng-model="listStyle.large" class="vhidden" type="checkbox">
           </form>
