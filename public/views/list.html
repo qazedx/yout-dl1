@@ -18,26 +18,26 @@
   </div>
   <div class="video-list" ng-class="{'list-large':listStyle.large, 'list-list':listStyle.list}">
     <div class="">
-      <div class="video-list-item panel panel-default" id="{{ video.obj.video_id }}"
+      <div class="video-list-item panel panel-default" id="{{ video.video_id }}"
       ng-repeat="video in videos | filter:searchVid:strict | orderBy:predicate:reverse">
-        <div class="panel-heading" ng-click="viewVid(video.obj.video_id)">
+        <div class="panel-heading" ng-click="viewVid(video.video_id)">
           <h5 class="btn-block text-left">
-            {{ video.obj.author }}
+            {{ video.video_author }}
           </h5>
           <h4 class="btn-block text-left">
-            {{ video.obj.title }}
+            {{ video.video_title }}
           </h4>
-          <span class="hidden">{{video.obj.timestamp*1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
-          <span class="hidden">{{video.obj.timestamp }}</span>
+          <span class="hidden">{{video.video_timestamp*1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+          <span class="hidden">{{video.video_timestamp }}</span>
         </div>
         <div class="panel-body">
           <!-- <video ng-src="{{video.path}}" controls></video> -->
         </div>
         <div class="panel-footer">
           <form class="form-inline text-left" action="index.html" method="post">
-            <button id="deleteVid-btn" class="glyphicon glyphicon-remove btn " type="button" name="button" ng-click="deleteVid(video.obj.video_id)"></button>
-            <button id="addVid-btn" class="addVid-btn glyphicon glyphicon-ok btn btn-default pull-right" type="button" name="button" ng-click="addVid(video.obj.video_id, video.path)"></button>
-            <button id="viewVid-btn" class="viewVid-btn glyphicon glyphicon-unchecked btn btn-default pull-right" type="button" name="button" ng-click="viewVid(video.obj.video_id)"></button>
+            <button id="deleteVid-btn" class="glyphicon glyphicon-remove btn " type="button" name="button" ng-click="deleteVid(video.video_id)"></button>
+            <button id="addVid-btn" class="addVid-btn glyphicon glyphicon-ok btn btn-default pull-right" type="button" name="button" ng-click="addVid(video.video_id, video.video_path)"></button>
+            <button id="viewVid-btn" class="viewVid-btn glyphicon glyphicon-unchecked btn btn-default pull-right" type="button" name="button" ng-click="viewVid(video.video_id)"></button>
             <input id="listStyle-large" ng-model="listStyle.large" class="vhidden" type="checkbox">
           </form>
         </div>

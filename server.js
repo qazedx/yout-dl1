@@ -50,7 +50,12 @@ var diretoryTreeToObj = function(dir, done) {
             type: 'file',
             name: path.basename(file),
             path: 'vid/' + path.basename(file, ".json") + '.mp4',
-            obj: obj
+            path_full:dir + '/' + path.basename(file),
+            video_id:obj.video_id,
+            video_title:obj.title,
+            video_author:obj.author,
+            video_timestamp: obj.timestamp
+            // obj: obj
           });
           if (!--pending)
             done(null, results);
@@ -67,25 +72,6 @@ var diretoryTreeToObj = function(dir, done) {
   });
 };
 
-function getFiles(dir, files_) {
-  // files_ = files_ || [];
-  // var files = fs.readdirSync(dir);
-  // for (var i in files) {
-  //   var name = dir + '/' + files[i];
-  //   if (fs.statSync(name).isDirectory()) {
-  //     getFiles(name, files_);
-  //   } else {
-  //     if (path.extname(files[i]) == ".mp4")
-  //       files_.push("vid/" + files[i]);
-  //   }
-  // }
-  //
-  //
-  //
-  // var files =
-  // console.log(files + '--------------------------files');
-  // return files;
-}
 
 
 function downloadVid(ws, url) {
