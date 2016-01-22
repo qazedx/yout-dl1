@@ -3,7 +3,7 @@ var express = require('express'),
 
 app
   .use(express.static('./public'))
-  .get('*', function(req, res) {
+  .get('*', function (req, res) {
     res.sendFile('public/main.html', {
       "root": "."
     });
@@ -14,10 +14,10 @@ var fs = require('fs');
 var ytdl = require('ytdl-core');
 var path = require('path')
 
-var diretoryTreeToObj = function(dir, done) {
+var diretoryTreeToObj = function (dir, done) {
   var results = [];
 
-  fs.readdir(dir, function(err, list) {
+  fs.readdir(dir, function (err, list) {
     if (err)
       return done(err);
 
@@ -30,11 +30,11 @@ var diretoryTreeToObj = function(dir, done) {
         children: results
       });
 
-    list.forEach(function(file) {
+    list.forEach(function (file) {
       file = path.resolve(dir, file);
-      fs.stat(file, function(err, stat) {
+      fs.stat(file, function (err, stat) {
         if (stat && stat.isDirectory()) {
-          diretoryTreeToObj(file, function(err, res) {
+          diretoryTreeToObj(file, function (err, res) {
             results.push({
               name: path.basename(file),
               type: 'folder',
@@ -50,12 +50,12 @@ var diretoryTreeToObj = function(dir, done) {
             type: 'file',
             name: path.basename(file),
             path: 'vid/' + path.basename(file, ".json") + '.mp4',
-            path_full:dir + '/' + path.basename(file),
-            video_id:obj.video_id,
-            video_title:obj.title,
-            video_author:obj.author,
+            path_full: dir + '/' + path.basename(file),
+            video_id: obj.video_id,
+            video_title: obj.title,
+            video_author: obj.author,
             video_timestamp: obj.timestamp
-            // obj: obj
+              // obj: obj
           });
           if (!--pending)
             done(null, results);
@@ -76,18 +76,18 @@ var diretoryTreeToObj = function(dir, done) {
 
 function downloadVid(ws, url) {
   try {
-    ytdl.getInfo(url, function(err, info) {
+    ytdl.getInfo(url, function (err, info) {
       if (err) {
         return console.log(err);
       }
-      fs.writeFile('public/vid/' + info.video_id + '.json', JSON.stringify(info), function(err) {
+      fs.writeFile('public/vid/' + info.video_id + '.json', JSON.stringify(info), function (err) {
         if (err) {
           return console.log(err);
         }
         console.log("The file was saved!");
       });
       ytdl(url, {
-          filter: function(format) {
+          filter: function (format) {
             return format.container === 'mp4';
           }
         })
@@ -100,7 +100,7 @@ function downloadVid(ws, url) {
 }
 
 function sendFileTreeOb(ws) {
-  diretoryTreeToObj('public/vid', function(err, res) {
+  diretoryTreeToObj('public/vid', function (err, res) {
     if (err)
       console.error(err);
 
@@ -136,9 +136,9 @@ function add2folder(array, array_path, folder) {
     var vid_file_new = "public/vid/" + +folder + "/" + array[i] + +".mp4";
     // var vid_data_file_new = "public/vid/" + vid + ".json";
     fs.rename(vid_file, vid_file_new, function (err) {
-                    if (err) throw err;
-                    console.log('Renamed complete');
-                });
+      if (err) throw err;
+      console.log('Renamed complete');
+    });
   }
 }
 
@@ -172,14 +172,14 @@ wss.on('connection', function connection(ws) {
   require('chokidar')
     .watch('public/vid', {
       ignored: /[\/\\]\./
-    }).on('all', function(event, path) {
+    }).on('all', function (event, path) {
       console.log(event, path);
       // var file_list = JSON.stringify(getFiles('public/vid'));
       // ws.send(file_list);
     })
-    .on('add', function(event, path) {
+    .on('add', function (event, path) {
       console.log('on add');
-      diretoryTreeToObj('public/vid', function(err, res) {
+      diretoryTreeToObj('public/vid', function (err, res) {
         if (err)
           console.error(err);
 
@@ -191,7 +191,7 @@ wss.on('connection', function connection(ws) {
           // ws.send(message);
       });
     })
-    .on('change', function(event, path) {
+    .on('change', function (event, path) {
       console.log('on change');
       //var file_list = JSON.stringify(getFiles('public/vid'));
       var message = {
