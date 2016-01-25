@@ -1,36 +1,45 @@
 angular.module('youtApp')
-  .directive('dlField', function() {
+  .directive('dlField', function () {
     return {
       restrict: 'EA',
       templateUrl: 'views/dl-field.html',
       replace: false,
-      link: function($scope, element, attr) {
-        $('#idl-input').on('click', function() {
+      link: function ($scope, element, attr) {
+        $('#idl-input').on('click', function () {
           this.setSelectionRange(0, this.value.length) // select input on click
         });
       }
     };
   })
-  .directive('add2list', ['MyService', function(MyService) {
+  .directive('add2list', ['MyService', function (MyService) {
     return {
       restrict: 'AE',
       templateUrl: 'views/add2list.html',
       replace: true,
-      link: function($scope, element, attr) {
+      link: function ($scope, element, attr) {
 
       }
     }
   }])
-  .directive('list', ['MyService', function(MyService) {
+  .directive('live-playlist', function (MyService) {
+    return {
+      restrict: 'AE',
+      templateUrl: 'views/live-playlist.html',
+      replace: true,
+      link: function ($scope, element, attr) {
+        console.log("playlist from directive");
+      }
+    }
+  })
+  .directive('list', ['MyService', function (MyService) {
     return {
       restrict: 'AE',
       templateUrl: 'views/list.html',
       replace: true,
-      link: function($scope, element, attr) {
+      link: function ($scope, element, attr) {
         var vid_add_arr = [];
         var vid_path_add_arr = [];
-        $scope.addVid = function(video_id, path) {
-
+        $scope.addVid = function (video_id, path) {
           console.log(video_id);
           var panel = $('#' + video_id + '.panel');
           if (panel.hasClass('panel-primary')) {
@@ -59,18 +68,17 @@ angular.module('youtApp')
           console.log(vid_add_arr);
           console.log(vid_path_add_arr);
         };
-        $scope.viewVid = function(video_id) {
+        $scope.viewVid = function (video_id) {
           console.log(video_id);
           $('#' + video_id + '.panel').toggleClass('viewVid-single');
           $('#' + video_id + '.panel .panel-body').html('<video src="/vid/' + video_id + '.mp4" controls></video>')
         };
 
-        $scope.deleteVid = function(video_id) {
+        $scope.deleteVid = function (video_id) {
           console.log(video_id);
           $('#' + video_id).html('');
           MyService.deleteVid(video_id);
         };
-
       }
     };
   }])

@@ -35,7 +35,8 @@ angular.module('youtApp')
     }
   })
   .controller('live-playlist', function($rootScope, $scope, MyService) {
-    $scope.downloadVid = function(vid) {
-      MyService.downloadVids($scope.vid);
-    }
+
+    console.log("live-playlist test controller");
+
+
   })
