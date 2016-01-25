@@ -34,3 +34,8 @@ angular.module('youtApp')
       MyService.downloadVids($scope.vid);
     }
   })
+  .controller('live-playlist', function($rootScope, $scope, MyService) {
+    $scope.downloadVid = function(vid) {
+      MyService.downloadVids($scope.vid);
+    }
+  })
