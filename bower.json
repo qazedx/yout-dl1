@@ -1,0 +1,17 @@
+{
+  "name": "yout-dl1",
+  "description": "youtube manager app",
+  "dependencies": {
+    "angular-bootstrap": "~0.13.0",
+    "angular-cookies": "~1.4.0",
+    "angular-file-upload": "~1.1.5",
+    "angular-mocks": "~1.4.0",
+    "angular-nouislider": "~0.3.1",
+    "angular-sanitize": "~1.4.0",
+    "angular-ui-router": "~0.2.15",
+    "angular": "~1.4.0",
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "video.js": "5.5.3"
+  }
+}
